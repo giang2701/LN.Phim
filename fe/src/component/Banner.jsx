@@ -1,0 +1,149 @@
+import React, { useEffect, useState } from "react";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/effect-fade";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, EffectFade, Autoplay } from "swiper/modules";
+import axios from "axios";
+import { Link } from "react-router-dom";
+const Banner = () => {
+    const [activeIndex, setActiveIndex] = useState(0);
+    const [data, setData] = useState([]);
+    // console.log("data", data);
+
+    useEffect(() => {
+        const getAll = async () => {
+            const res = await axios.get(
+                "https://phimapi.com/v1/api/danh-sach/phim-bo?page=2"
+            );
+            setData(res.data.data.items);
+            // localStorage.setItem(
+            //     "phimData",
+            //     JSON.stringify(res.data.data.items)
+            // );
+        };
+        getAll();
+    }, []);
+
+    const activeItem = data[activeIndex]; // Get the current item based on activeIndex
+    return (
+        <>
+            <div className="bg-[#010101] h-[1200px]">
+                <div className="w-full h-screen relative z-10">
+                    <Swiper
+                        modules={[Navigation, Pagination, EffectFade, Autoplay]}
+                        navigation
+                        pagination={{ clickable: true }}
+                        effect="fade"
+                        fadeEffect={{ crossFade: true }}
+                        autoplay={{
+                            delay: 3000, // Change slide every second
+                            disableOnInteraction: false, // Continue autoplay after user interactions
+                        }}
+                        speed={1000} // Set the transition speed to 700ms
+                        onSlideChange={(swiper) =>
+                            setActiveIndex(swiper.activeIndex)
+                        }
+                        className="mb-6"
+                    >
+                        {data.map((item, index) => (
+                            <SwiperSlide key={index}>
+                                <div className="relative w-screen h-screen">
+                                    <img
+                                        src={`https://phimimg.com/${item.thumb_url}`}
+                                        alt={item.title}
+                                        className="w-full h-full object-cover object-top shadow-lg transition-opacity duration-700 ease-in-out rounded-none"
+                                    />
+                                    <div
+                                        className="absolute inset-0 pointer-events-none"
+                                        style={{
+                                            background: `
+                                            linear-gradient(to top, rgba(0,0,0,7), transparent 90%),
+                                            linear-gradient(to bottom, rgba(0,0,0.5), transparent 30%),
+                                            linear-gradient(to left, rgba(0,0,0,0.5), transparent 30%),
+                                            linear-gradient(to right, rgba(0,0,0,0.7), transparent 30%)
+                                        `,
+                                        }}
+                                    />
+                                </div>
+                            </SwiperSlide>
+                        ))}
+                    </Swiper>
+
+                    {/* Info block */}
+                    {activeItem && (
+                        <div
+                            key={activeIndex} // Important to re-render animation
+                            className="absolute top-[300px] left-[80px] z-10"
+                        >
+                            <h2 className="text-[50px] font-brush mb-2 text-white w-[335px] overflow-hidden whitespace-nowrap text-ellipsis">
+                                {activeItem.name}
+                            </h2>
+                            <div className="flex items-center">
+                                <div className="w-[170px] bg-[#04dc5c] pl-2 font-semibold text-white rounded-ss-md rounded-es-md">
+                                    Top Phim Thịnh Hành
+                                </div>
+                                <div className="w-[60px] bg-[#a1aba7]/50 pl-2 font-semibold text-white rounded-se-md rounded-ee-md">
+                                    Top 1
+                                </div>
+                            </div>
+                            <div className="">
+                                <p className="text-white mt-2">
+                                    <span className="text-[15px] font-semibold ">
+                                        <i className="fa-solid fa-star pr-1"></i>
+                                        9.8 |&nbsp;
+                                    </span>
+                                    <span className="text-[15px] font-semibold ">
+                                        {activeItem.year} |&nbsp;
+                                    </span>
+                                    <span className="text-[15px] font-semibold ">
+                                        {activeItem.episode_current}
+                                    </span>
+                                    <span className="mt-3 block">
+                                        {activeItem.country.map(
+                                            (country, index) => (
+                                                <span
+                                                    key={index}
+                                                    className="mr-1 bg-[#a1aba7]/50 px-2 pb-[3px] font-semibold text-white "
+                                                >
+                                                    {country.name}
+                                                </span>
+                                            )
+                                        )}
+                                        {activeItem.category.map(
+                                            (category, index) => (
+                                                <span
+                                                    key={index}
+                                                    className="mr-1 bg-[#a1aba7]/50 px-2 pb-[3px] font-semibold text-white "
+                                                >
+                                                    {category.name}
+                                                </span>
+                                            )
+                                        )}
+                                    </span>
+                                </p>
+                            </div>
+                            {/* action banner */}
+                            <div className="mt-6 flex items-center gap-4">
+                                <Link to={`/${activeItem.slug}`}>
+                                    <button className="w-[65px] h-[65px] bg-green-400 rounded-full flex items-center justify-center text-white text-[20px] font-semibold hover:bg-green-500 transition-colors duration-300">
+                                        <i className="fa-solid fa-play"></i>
+                                    </button>
+                                </Link>
+                                <button className="w-[65px] h-[65px] bg-white rounded-full flex items-center justify-center text-white text-[20px] font-semibold hover:bg-green-500 transition-colors duration-300">
+                                    <img
+                                        src="../../public/image/bookmark.png"
+                                        alt=""
+                                    />
+                                </button>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            </div>
+        </>
+    );
+};
+
+export default Banner;

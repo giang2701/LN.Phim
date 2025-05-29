@@ -92,7 +92,7 @@ const Header = () => {
                 <Link to="/">
                     <div className="flex justify-content-around items-center pt-2 ">
                         <img
-                            src="../../public/image/logo.png"
+                            src="/image/logo.png"
                             alt=""
                             className="w-[70px]"
                         />

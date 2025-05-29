@@ -96,7 +96,7 @@ const Header = () => {
                             alt=""
                             className="w-[70px]"
                         />
-                        <p className="-ml-3 text-2xl font-semibold">𝓛𝓝</p>
+                        <p className="-ml-3 text-2xl font-semibold">𝓛𝓝.𝓟𝓱𝓲𝓶</p>
                     </div>
                 </Link>
                 {/* nav-danh mục phim*/}
@@ -274,7 +274,7 @@ const Header = () => {
                         onClick={hanldClose}
                     >
                         <img
-                            src="../../public/image/wallet.png"
+                            src="/image/wallet.png"
                             alt=""
                             className="w-[20px] h-[20px] cursor-pointer"
                         />

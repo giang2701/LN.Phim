@@ -132,10 +132,7 @@ const Banner = () => {
                                     </button>
                                 </Link>
                                 <button className="w-[65px] h-[65px] bg-white rounded-full flex items-center justify-center text-white text-[20px] font-semibold hover:bg-green-500 transition-colors duration-300">
-                                    <img
-                                        src="../../public/image/bookmark.png"
-                                        alt=""
-                                    />
+                                    <img src="/image/bookmark.png" alt="" />
                                 </button>
                             </div>
                         </div>

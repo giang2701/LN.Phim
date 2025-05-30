@@ -19,15 +19,15 @@ const Anime = () => {
     return (
         <>
             <div className="bg-[#010101]">
-                <h2 className="text-white text-xl font-bold md:ml-[25px] lg:ml-[35px] xl:ml-[75px] mb-8 md:-mt-10 lg:-mt-5">
+                <h2 className="text-white text-xl font-bold xs:ml-[10px] md:ml-[25px] lg:ml-[35px] xl:ml-[75px] mb-8 xs:-mt-[750px] md:-mt-10 lg:-mt-5">
                     Trending Chinese Anime
                 </h2>
-                <div className="md:w-[750px] lg:w-[900px] xl:w-[1370px] md:ml-[28px] lg:ml-[50px] xl:ml-[70px]">
-                    <div className="grid md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+                <div className="xs:w-[380px] md:w-[750px] lg:w-[900px] xl:w-[1370px] xs:ml-[10px] md:ml-[28px] lg:ml-[50px] xl:ml-[70px]">
+                    <div className="grid xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 xs:gap-0 xs:gap-4">
                         {data.map((item) => (
                             <div
                                 key={item.id}
-                                className="md:w-[240px] lg:w-[220px] xl:w-[260px] h-[350px]"
+                                className="xs:w-[180px] md:w-[240px] lg:w-[220px] xl:w-[260px] h-[350px]"
                             >
                                 {/* img */}
                                 <Link to={`/${item.slug}`}>

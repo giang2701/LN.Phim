@@ -14,7 +14,7 @@ const Footer = () => {
                             alt=""
                             className="w-[70px]"
                         />
-                        <p className="-ml-3 text-2xl font-semibold">
+                        <p className="-ml-3 xs:text-lg md:text-2xl font-semibold">
                             𝓛𝓝.𝓟𝓱𝓲𝓶 Thế Giới Phim Mới Nhất
                         </p>
                     </div>

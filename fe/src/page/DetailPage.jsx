@@ -101,13 +101,16 @@ const BrowsePage = () => {
 
     return (
         <div className="p-4 bg-black pt-[80px] -mt-[75px]">
-            <h2 className="text-2xl font-bold mb-7 capitalize text-white ml-16 mt-6">
+            <h2 className="text-2xl font-bold mb-7 capitalize text-white md:ml-1 xl:ml-16 mt-6">
                 {formatSlug(value)}
             </h2>
             <div className="xl:w-[1370px] xl:ml-[70px]">
-                <div className="grid grid-cols-5 gap-4">
+                <div className="grid md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 gap-4">
                     {movies.map((item) => (
-                        <div key={item.id} className="w-[260px] h-[350px]">
+                        <div
+                            key={item.id}
+                            className="md:w-[190px] xl:w-[260px] h-[350px]"
+                        >
                             {/* img */}
                             <Link to={`/${item.slug}`}>
                                 <div className="flex justify-center cursor-pointer relative">
@@ -140,7 +143,7 @@ const BrowsePage = () => {
                         setCurrentPage((prev) => Math.max(prev - 1, 1))
                     }
                     disabled={currentPage === 1}
-                    className="px-3 py-3 bg-black text-white/70 rounded-full border-[2px] border-white/50 xl:ml-[1350px] hover:border-white hover:text-white"
+                    className="px-3 py-3 bg-black text-white/70 rounded-full border-[2px] border-white/50 md:ml-[880px] lg:ml-[880px] xl:ml-[1350px] hover:border-white hover:text-white"
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"

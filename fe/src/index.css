@@ -1,26 +1,26 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/* @layer base {
-    body {
+@layer base {
+    /* body {
         font-family: "Poppins", sans-serif;
-    }
-    Ẩn scrollbar cho cả trình duyệt Webkit (Chrome, Edge, Safari) và Firefox
+    } */
+    /* Ẩn scrollbar cho cả trình duyệt Webkit (Chrome, Edge, Safari) và Firefox */
     .no-scrollbar::-webkit-scrollbar {
-        display: none;  Ẩn scrollbar trên Chrome, Edge, Safari 
+        display: none; /* Ẩn scrollbar trên Chrome, Edge, Safari  */
     }
     .no-scrollbar {
-        scrollbar-width: none;  Ẩn scrollbar trên Firefox 
+        scrollbar-width: none; /* Ẩn scrollbar trên Firefox  */
     }
-     Tạo lớp tùy chỉnh để giới hạn văn bản 2 dòng và hiển thị dấu ba chấm 
+    /* Tạo lớp tùy chỉnh để giới hạn văn bản 2 dòng và hiển thị dấu ba chấm 
     .line-clamp-2 {
         display: -webkit-box;
         -webkit-line-clamp: 2;  Giới hạn 2 dòng 
         -webkit-box-orient: vertical;
         overflow: hidden;
         text-overflow: ellipsis;
-    }
-} */
+    } */
+}
 /* Ẩn thanh cuộn */
 .scrollbar-hide::-webkit-scrollbar {
     display: none;

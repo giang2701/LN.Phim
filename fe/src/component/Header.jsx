@@ -87,7 +87,7 @@ const Header = () => {
     };
     return (
         <div
-            className={`flex items-center top-0 left-0 w-full z-50 py-2 transition-all duration-300 ease-in-out ${
+            className={`flex items-center top-0 left-0 w-full z-50 py-2 xs:px-10 md:px-0 transition-all duration-300 ease-in-out ${
                 isHome
                     ? isScrolled
                         ? "sticky bg-black bg-opacity-80 text-white shadow"
@@ -96,25 +96,9 @@ const Header = () => {
             }`}
         >
             <div className="flex items-center md:-ml-1 lg:ml-5 xl:ml-0 xl:pl-14">
-                <div className="xs:block md:hidden lg:hidden xl:hidden xs:pl-4">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke-width="1.5"
-                        stroke="currentColor"
-                        class="size-7"
-                    >
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5"
-                        />
-                    </svg>
-                </div>
                 {/* logo */}
                 <Link to="/">
-                    <div className="flex justify-content-around items-center pt-2 xs:-ml-2 md:ml-12 lg:-ml-1 xl:-ml-0">
+                    <div className="flex justify-content-around items-center pt-2 xs:-ml-10 md:ml-12 lg:-ml-1 xl:-ml-0">
                         <img
                             src="/image/logo.png"
                             alt=""
@@ -272,6 +256,7 @@ const Header = () => {
                         </div>
                     </div>
                 </div>
+                {/* nav-danh mục phim mobile */}
             </div>
             {/* action*/}
             <div className="lg:-ml-[30px] xl:ml-0 pl-[90px]">
@@ -283,7 +268,7 @@ const Header = () => {
                         viewBox="0 0 24 24"
                         stroke-width="1.5"
                         stroke="currentColor"
-                        className={`xs:size-6 xs:block xs:size-6 xs:text-white xs:translate-x-[50px] xs:translate-y-1 xs:z-50 xs:block  md:hidden lg:hidden xl:hidden`}
+                        className={`xs:size-6 xs:block xs:size-6 xs:text-white xs:absolute xs:right-[80px] xs:z-50 xs:block  md:hidden lg:hidden xl:hidden`}
                         onClick={() => setIconSearchMobie(!IconSearchMobie)}
                     >
                         <path
@@ -398,8 +383,8 @@ const Header = () => {
                                     placeholder="Tìm kiếm phim..."
                                     className={`absolute h-[35px] rounded-lg pl-3 outline-none ${
                                         IconSearchMobie
-                                            ? "xs:translate-y-[100%] xs:-translate-x-[80%] xs:w-[250px]"
-                                            : "xs:-translate-y-[260%] xs:-translate-x-[100%] xs:w-[50px]"
+                                            ? "xs:top-[30px] xs:-right-[80px] xs:w-[250px]"
+                                            : "xs:-top-[100px] xs:-right-[80px] xs:w-[50px]"
                                     } `}
                                     value={searchKeyword}
                                     onChange={(e) =>
@@ -414,7 +399,7 @@ const Header = () => {
                                     stroke="currentColor"
                                     className={`xs:size-6 xs:text-black xs:absolute  ${
                                         IconSearchMobie
-                                            ? "xs:-bottom-[65px] xs:left-[20px]"
+                                            ? "xs:-bottom-[60px] xs:left-[50px]"
                                             : "xs:bottom-[235px] xs:-left-[30px]"
                                     }`}
                                     onClick={handleSubmit}
@@ -429,7 +414,7 @@ const Header = () => {
                         </form>
                     </div>
                     <button
-                        className="flex items-center justify-center gap-1 xs:ml-[60px] md:ml-[50px] lg:-ml-[120px] xl:ml-4 lg:mt-1 xl:mt-0 xs:w-[70px] md:w-[100px] lg:w-[90px] xl:w-[100px] h-[36px] rounded-md bg-gradient-to-r from-orange-500 to-red-500 hover:bg-orange-500"
+                        className="flex items-center justify-center gap-1 xs:absolute xs:right-1 md:static xs:ml-[0px] md:ml-[50px] lg:-ml-[120px] xl:ml-4 lg:mt-1 xl:mt-0 xs:w-[70px] md:w-[100px] lg:w-[90px] xl:w-[100px] h-[36px] rounded-md bg-gradient-to-r from-orange-500 to-red-500 hover:bg-orange-500"
                         onClick={hanldClose}
                     >
                         <img

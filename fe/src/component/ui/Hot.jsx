@@ -26,8 +26,8 @@ const Hot = () => {
     }, []);
     return (
         <>
-            <div className="relative z-20 md:-mt-[420px] lg:-mt-[720px] xl:-mt-[600px]">
-                <div className="text-white text-xl font-bold md:ml-[28px] lg:ml-[35px] xl:ml-[75px] md:pt-3 lg:mt-0">
+            <div className="relative z-20 xs:-top-[600px] md:top-0 md:-mt-[420px] lg:-mt-[720px] xl:-mt-[600px]">
+                <div className="text-white text-xl font-bold xs:ml-[20px] md:ml-[28px] lg:ml-[35px] xl:ml-[75px] md:pt-3 lg:mt-0">
                     <h2>Đề xuất hot</h2>
                 </div>
                 <div className="md:w-[790px] lg:w-[880px] xl:w-[1365px] lg:ml-[10px] xl:ml-[60px]  xl:rounded-md md:rounded-md  mt-5 pb-7 md:pt-1 lg:pt-3">
@@ -73,13 +73,13 @@ const Hot = () => {
                         </div>
                         {/* content */}
                         <div
-                            className="md:w-[750px] lg:w-[930px] xl:w-[1365px] ml-[15px] md:ml-[22px] xl:ml-[15px] mt-4 flex sub_box_2_container overflow-x-auto no-scrollbar md:overflow-hidden xl:overflow-hidden scroll-smooth"
+                            className="xs:w-[360px] md:w-[750px] lg:w-[930px] xl:w-[1365px] ml-[15px] md:ml-[22px] xl:ml-[15px] mt-4 flex sub_box_2_container overflow-x-auto no-scrollbar md:overflow-hidden xl:overflow-hidden scroll-smooth"
                             ref={scrollRef}
                         >
                             {data.map((item) => (
                                 <div
                                     key={item.id}
-                                    className="md:w-[207px] lg:w-[227px] xl:w-[237px]  h-[350px] md:mr-[8px] lg:mr-2 xl:mr-3"
+                                    className="xs:w-[120px] md:w-[207px] lg:w-[227px] xl:w-[237px]  h-[350px] xs:mr-[5px] md:mr-[8px] lg:mr-2 xl:mr-3"
                                 >
                                     {/* img */}
                                     <Link to={`/${item.slug}`}>
@@ -99,7 +99,7 @@ const Hot = () => {
                                         className="text-[14px] mt-2 w-[300px] cursor-pointer line-clamp-2 h-[42px] text-white "
                                         title={item.name}
                                     >
-                                        <p className="w-[200px] overflow-hidden whitespace-nowrap text-ellipsis">
+                                        <p className="xs:w-[100px] md:w-[200px] overflow-hidden whitespace-nowrap text-ellipsis">
                                             {item.name}
                                         </p>
                                     </div>

@@ -105,20 +105,15 @@ const MovieSearch = () => {
             </>
         );
     return (
-        <div className="bg-black min-h-screen pt-[100px] -mt-[75px]">
-            <div className="flex items-center bg-black xl:w-[1370px] h-[30px] ml-[70px] mb-5 py-8 pl-4 rounded-md border-[2px] border-white/40">
-                {/* <h1>Tìm Kiếm Phim</h1> */}
-                {/* <input
-                type="text"
-                placeholder="Tìm kiếm theo tên phim"
-                value={keyword}
-                onChange={(e) => setKeyword(e.target.value)}
-            /> */}
-                <p className="text-white mr-6">Lọc Phim</p>
+        <div className="bg-black min-h-screen xs:pt-[50px] md:pt-[120px] xl:pt-[100px] -mt-[75px]">
+            <div className="md:flex items-center bg-black  md:w-[720px] lg:w-[790px] xl:w-[1370px] h-[30px] md:ml-[45px] lg:ml-[125px] xl:ml-[70px] xs:mb-[120px] md:mb-5 py-8 pl-4 md:rounded-md md:border-[2px] md:border-white/40">
+                <p className="text-white mr-6 xs:mb-6 md:mb-0 xs:font-bold md:font-normal">
+                    Lọc Phim
+                </p>
                 <select
                     value={selectedCategory}
                     onChange={(e) => setSelectedCategory(e.target.value)}
-                    className="w-[180px] px-3 py-2 bg-black text-white border border-white/30 rounded-xl shadow-md focus:outline-none focus:ring-2 focus:ring-white/50 transition duration-200 ease-in-out hover:border-white/60 mr-5"
+                    className="xs:w-[150px] md:w-[130px] lg:w-[150px] xl:w-[180px] xs:mb-3 md:mb-0 xs:mr-7 md:mr-2 lg:mr-5 xl:mr-5 md:text-sm lg:text-sm xl:text-base px-3 py-2 bg-black text-white border border-white/30 rounded-xl shadow-md focus:outline-none focus:ring-2 focus:ring-white/50 transition duration-200 ease-in-out hover:border-white/60 "
                 >
                     <option value="">Chọn thể loại</option>
                     {categories.map((cat) => (
@@ -131,7 +126,7 @@ const MovieSearch = () => {
                 <select
                     value={selectedCountry}
                     onChange={(e) => setSelectedCountry(e.target.value)}
-                    className="w-[180px] px-3 py-2 bg-black text-white border border-white/30 rounded-xl shadow-md focus:outline-none focus:ring-2 focus:ring-white/50 transition duration-200 ease-in-out hover:border-white/60 mr-5"
+                    className="xs:w-[150px] md:w-[130px] lg:w-[150px] xl:w-[180px] xs:mb-3 md:mb-0 md:mr-5 lg:mr-5 xl:mr-5 md:text-sm lg:text-sm xl:text-base px-3 py-2 bg-black text-white border border-white/30 rounded-xl shadow-md focus:outline-none focus:ring-2 focus:ring-white/50 transition duration-200 ease-in-out hover:border-white/60 "
                 >
                     <option value="">Chọn quốc gia</option>
                     {countries.map((country) => (
@@ -143,7 +138,7 @@ const MovieSearch = () => {
                 <select
                     value={selectedYear}
                     onChange={(e) => setSelectedYear(e.target.value)}
-                    className="w-[180px] px-3 py-2 bg-black text-white border border-white/30 rounded-xl shadow-md focus:outline-none focus:ring-2 focus:ring-white/50 transition duration-200 ease-in-out hover:border-white/60 mr-5"
+                    className="xs:w-[150px] md:w-[130px] lg:w-[150px] xl:w-[180px] xs:mb-3 md:mb-0 xs:mr-7 md:mr-6 lg:mr-5 xl:mr-5 md:text-sm lg:text-sm xl:text-base px-3 py-2 bg-black text-white border border-white/30 rounded-xl shadow-md focus:outline-none focus:ring-2 focus:ring-white/50 transition duration-200 ease-in-out hover:border-white/60 "
                 >
                     <option value="">Chọn năm</option>
                     {yearOptions.map((year) => (
@@ -164,12 +159,12 @@ const MovieSearch = () => {
             </div>
             <div className="results">
                 {results.length > 0 ? (
-                    <div className="xl:w-[1370px] xl:ml-[70px]">
-                        <div className="grid grid-cols-5 gap-4">
+                    <div className="xl:w-[1370px] xl:ml-[70px] xs:pl-3 md:pl-3 xl:pl-0">
+                        <div className="grid xs:grid-cols-2  md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 md:gap-1 xl:gap-4">
                             {results.map((item) => (
                                 <div
                                     key={item.id}
-                                    className="w-[260px] h-[350px]"
+                                    className="xs:w-[180px]  md:w-[186px] xl:w-[260px] h-[350px]"
                                 >
                                     {/* img */}
                                     <Link to={`/${item.slug}`}>
@@ -204,7 +199,7 @@ const MovieSearch = () => {
                                     )
                                 }
                                 disabled={currentPage === 1}
-                                className="px-3 py-3 bg-black text-white/70 rounded-full border-[2px] border-white/50 xl:ml-[1250px] hover:border-white hover:text-white"
+                                className="px-3 py-3 bg-black text-white/70 rounded-full border-[2px] border-white/50 xs:ml-[270px] md:ml-[650px] lg:ml-[880px] xl:ml-[1250px] hover:border-white hover:text-white"
                             >
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"

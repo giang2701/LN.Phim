@@ -49,7 +49,7 @@ const HomePage = () => {
             <PhimBo />
             {/* phim bộ  */}
             <PhimLe />
-            <Footer />
+            {/* <Footer /> */}
         </>
     );
 };

@@ -18,14 +18,17 @@ const Anime = () => {
     }, []);
     return (
         <>
-            <div className="bg-[#010101] ">
-                <h2 className="text-white text-xl font-bold ml-[75px] mb-8 -mt-5">
+            <div className="bg-[#010101]">
+                <h2 className="text-white text-xl font-bold md:ml-[25px] lg:ml-[35px] xl:ml-[75px] mb-8 md:-mt-10 lg:-mt-5">
                     Trending Chinese Anime
                 </h2>
-                <div className="xl:w-[1370px] xl:ml-[70px]">
-                    <div className="grid grid-cols-5 gap-4">
+                <div className="md:w-[750px] lg:w-[900px] xl:w-[1370px] md:ml-[28px] lg:ml-[50px] xl:ml-[70px]">
+                    <div className="grid md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
                         {data.map((item) => (
-                            <div key={item.id} className="w-[260px] h-[350px]">
+                            <div
+                                key={item.id}
+                                className="md:w-[240px] lg:w-[220px] xl:w-[260px] h-[350px]"
+                            >
                                 {/* img */}
                                 <Link to={`/${item.slug}`}>
                                     <div className="flex justify-center cursor-pointer relative">
@@ -35,7 +38,7 @@ const Anime = () => {
                                             className="w-full h-[300px] object-cover rounded-ss-md rounded-se-md hover:transform hover:scale-105 transition-transform duration-300"
                                         />
 
-                                        <p className="text-white absolute bottom-0 left-4">
+                                        <p className="text-white absolute bottom-0 lg:left-2 xl:left-4">
                                             {item.episode_current}
                                         </p>
                                     </div>{" "}

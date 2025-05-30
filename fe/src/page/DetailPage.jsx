@@ -100,7 +100,7 @@ const BrowsePage = () => {
         );
 
     return (
-        <div className="p-4 bg-black">
+        <div className="p-4 bg-black pt-[80px] -mt-[75px]">
             <h2 className="text-2xl font-bold mb-7 capitalize text-white ml-16 mt-6">
                 {formatSlug(value)}
             </h2>

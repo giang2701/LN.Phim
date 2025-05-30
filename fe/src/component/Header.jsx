@@ -9,6 +9,12 @@ const Header = () => {
     const [searchKeyword, setSearchKeyword] = useState("");
     const navigate = useNavigate();
     const [isScrolled, setIsScrolled] = useState(false);
+    // handle onclick icon search tablet pro
+    const [IconSearch, setIconSearch] = useState(false);
+    console.log("IconSearch", IconSearch);
+    const [IconSearchMobie, setIconSearchMobie] = useState(false);
+    console.log("IconSearchMobie", IconSearchMobie);
+    // End handle onclick icon search tablet pro
     // thể loại phim
     const [TheLoai, setTheLoai] = useState([]);
     // thể quoc gia
@@ -76,6 +82,8 @@ const Header = () => {
                 `/search?keyword=${encodeURIComponent(searchKeyword.trim())}`
             );
         }
+        setIconSearch(false);
+        setIconSearchMobie(false);
     };
     return (
         <div
@@ -87,21 +95,39 @@ const Header = () => {
                     : "sticky bg-black bg-opacity-80 text-white shadow"
             }`}
         >
-            <div className="flex items-center pl-14">
+            <div className="flex items-center md:-ml-1 lg:ml-5 xl:ml-0 xl:pl-14">
+                <div className="xs:block md:hidden lg:hidden xl:hidden xs:pl-4">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        class="size-7"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5"
+                        />
+                    </svg>
+                </div>
                 {/* logo */}
                 <Link to="/">
-                    <div className="flex justify-content-around items-center pt-2 ">
+                    <div className="flex justify-content-around items-center pt-2 xs:-ml-2 md:ml-12 lg:-ml-1 xl:-ml-0">
                         <img
                             src="/image/logo.png"
                             alt=""
-                            className="w-[70px]"
+                            className="xs:w-[70px] md:w-[70px] lg:w-[70px] xl:w-[70px]"
                         />
-                        <p className="-ml-3 text-2xl font-semibold">𝓛𝓝.𝓟𝓱𝓲𝓶</p>
+                        <p className="xs:-ml-[14px] md:-ml-[10px] lg:-ml-3 xl:-ml-3 md:text-lg lg:text-sm xl:text-2xl lg:-mt-1 xl:mt-0 font-semibold">
+                            𝓛𝓝.𝓟𝓱𝓲𝓶
+                        </p>
                     </div>
                 </Link>
                 {/* nav-danh mục phim*/}
-                <div className="w-[700px] pt-2 pl-9 ">
-                    <div className="flex items-center justify-around font-semibold cursor-pointer">
+                <div className="hidden md:w-[610px] lg:w-[610px] xl:w-[700px] pt-2 lg:pl-4 xl:pl-9 md:block md:absolute md:top-[60px] md:left-[12%] lg:static lg:top-[0px] xl:static xl:top-[0px]">
+                    <div className="flex items-center justify-around font-semibold cursor-pointer lg:text-[14px] xl:text-[16px]">
                         <Link to={`danh-sach/phim-bo`}>Phim Bộ</Link>
                         <Link to={`danh-sach/phim-le`}>Phim Lẻ</Link>
                         <Link to={`danh-sach/tv-shows`}>Tv Show</Link>
@@ -132,7 +158,7 @@ const Header = () => {
                             {/* Dropdown menu for Category */}
                             <div
                                 id="dropdownNavbarCategory"
-                                className="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-[620px] dark:bg-gray-700 dark:divide-gray-600"
+                                className="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-[420px] dark:bg-gray-700 dark:divide-gray-600"
                             >
                                 <ul
                                     className="py-2 text-sm text-gray-700 dark:text-gray-400 grid grid-cols-3 gap-x-2 gap-y-1 px-4"
@@ -178,7 +204,7 @@ const Header = () => {
                             {/* Dropdown menu for Country */}
                             <div
                                 id="dropdownNavbarCountry"
-                                className="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-[620px] dark:bg-gray-700 dark:divide-gray-600"
+                                className="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-[420px] dark:bg-gray-700 dark:divide-gray-600"
                             >
                                 <ul
                                     className="py-2 text-sm text-gray-700 dark:text-gray-400 grid grid-cols-3 gap-x-2 gap-y-1 px-4"
@@ -225,7 +251,7 @@ const Header = () => {
                             {/* Dropdown menu for Year */}
                             <div
                                 id="dropdownNavbarYear"
-                                className="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-[620px] dark:bg-gray-700 dark:divide-gray-600"
+                                className="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-[220px] dark:bg-gray-700 dark:divide-gray-600"
                             >
                                 <ul
                                     className="py-2 text-sm text-gray-700 dark:text-gray-400 grid grid-cols-3 gap-x-2 gap-y-1 px-4"
@@ -248,29 +274,162 @@ const Header = () => {
                 </div>
             </div>
             {/* action*/}
-            <div className="pl-[90px]">
+            <div className="lg:-ml-[30px] xl:ml-0 pl-[90px]">
                 <div className="flex items-center justify-around">
-                    <div className="w-[250px] flex items-center text-black">
+                    {/* icon mobile */}
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        className={`xs:size-6 xs:block xs:size-6 xs:text-white xs:translate-x-[50px] xs:translate-y-1 xs:z-50 xs:block  md:hidden lg:hidden xl:hidden`}
+                        onClick={() => setIconSearchMobie(!IconSearchMobie)}
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+                        />
+                    </svg>
+                    {/* icon tablet */}
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        className={`xs:size-6 xs:hidden  lg:size-6 lg:text-white xs:translate-x-[55px] lg:-translate-x-[30px] lg:translate-y-1 lg:z-50 xs:block  md:hidden lg:block xl:hidden`}
+                        onClick={() => setIconSearch(!IconSearch)}
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+                        />
+                    </svg>
+                    {/*//*End icon mobile */}
+                    <div className="lg:w-[100px] xl:w-[250px] flex items-center text-black  md:block">
                         <form onSubmit={handleSubmit} className="relative">
-                            <input
-                                type="text"
-                                placeholder="Tìm kiếm phim..."
-                                className="w-[250px] h-[35px] rounded-md pl-3 outline-none"
-                                value={searchKeyword}
-                                onChange={(e) =>
-                                    setSearchKeyword(e.target.value)
-                                }
-                            />
-                            <img
-                                src="/image/search-interface-symbol.png"
-                                alt=""
-                                onClick={handleSubmit}
-                                className="w-[20px] h-[20px] cursor-pointer absolute top-2 right-3"
-                            />
+                            {/* pc */}
+                            <div className="hidden xl:block">
+                                <input
+                                    type="text"
+                                    placeholder="Tìm kiếm phim..."
+                                    className="w-[250px] h-[35px] rounded-md pl-3 outline-none"
+                                    value={searchKeyword}
+                                    onChange={(e) =>
+                                        setSearchKeyword(e.target.value)
+                                    }
+                                />
+                                <img
+                                    src="/image/search-interface-symbol.png"
+                                    alt=""
+                                    onClick={handleSubmit}
+                                    className="w-[20px] h-[20px] cursor-pointer absolute top-2 right-3"
+                                />
+                            </div>
+                            {/* tablet pro */}
+                            <div className="xs:hidden md:hidden lg:block xl:hidden">
+                                <input
+                                    type="text"
+                                    placeholder="Tìm kiếm phim..."
+                                    className={` h-[35px] rounded-lg pl-3 outline-none ${
+                                        IconSearch
+                                            ? "lg:translate-y-[150%] lg:-translate-x-[100%] lg:w-[250px]"
+                                            : "lg:-translate-y-[200%] lg:-translate-x-[100%] lg:w-[50px]"
+                                    } `}
+                                    value={searchKeyword}
+                                    onChange={(e) =>
+                                        setSearchKeyword(e.target.value)
+                                    }
+                                />
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke-width="1.5"
+                                    stroke="currentColor"
+                                    className={`lg:size-6 lg:text-black lg:absolute  ${
+                                        IconSearch
+                                            ? "lg:-bottom-[135%] lg:-left-[30px]"
+                                            : "lg:bottom-[135%] lg:-left-[30px]"
+                                    }`}
+                                    onClick={handleSubmit}
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+                                    />
+                                </svg>
+                            </div>
+                            {/* tablet thường */}
+                            <div className="xs:hidden md:block lg:hidden xl:hidden">
+                                <input
+                                    type="text"
+                                    placeholder="Tìm kiếm phim..."
+                                    className="w-[250px] h-[35px] md:rounded-lg lg:rounded-md xl:rounded-md pl-3 outline-none md:bg-[#63635c] lg:bg-white xl:bg-white  md:text-white lg:text-black xl:text-black"
+                                    value={searchKeyword}
+                                    onChange={(e) =>
+                                        setSearchKeyword(e.target.value)
+                                    }
+                                />
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke-width="1.5"
+                                    stroke="currentColor"
+                                    className={`size-6 text-white  cursor-pointer absolute top-[5px] right-3`}
+                                    onClick={handleSubmit}
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+                                    />
+                                </svg>
+                            </div>
+                            {/* mobile */}
+                            <div className="xs:block md:hidden lg:hidden xl:hidden">
+                                <input
+                                    type="text"
+                                    placeholder="Tìm kiếm phim..."
+                                    className={`absolute h-[35px] rounded-lg pl-3 outline-none ${
+                                        IconSearchMobie
+                                            ? "xs:translate-y-[100%] xs:-translate-x-[80%] xs:w-[250px]"
+                                            : "xs:-translate-y-[260%] xs:-translate-x-[100%] xs:w-[50px]"
+                                    } `}
+                                    value={searchKeyword}
+                                    onChange={(e) =>
+                                        setSearchKeyword(e.target.value)
+                                    }
+                                />
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke-width="1.5"
+                                    stroke="currentColor"
+                                    className={`xs:size-6 xs:text-black xs:absolute  ${
+                                        IconSearchMobie
+                                            ? "xs:-bottom-[65px] xs:left-[20px]"
+                                            : "xs:bottom-[235px] xs:-left-[30px]"
+                                    }`}
+                                    onClick={handleSubmit}
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+                                    />
+                                </svg>
+                            </div>
                         </form>
                     </div>
                     <button
-                        className="flex items-center justify-center gap-1 ml-4 w-[100px] h-[36px] rounded-md bg-gradient-to-r from-orange-500 to-red-500 hover:bg-orange-500"
+                        className="flex items-center justify-center gap-1 xs:ml-[60px] md:ml-[50px] lg:-ml-[120px] xl:ml-4 lg:mt-1 xl:mt-0 xs:w-[70px] md:w-[100px] lg:w-[90px] xl:w-[100px] h-[36px] rounded-md bg-gradient-to-r from-orange-500 to-red-500 hover:bg-orange-500"
                         onClick={hanldClose}
                     >
                         <img
@@ -278,12 +437,15 @@ const Header = () => {
                             alt=""
                             className="w-[20px] h-[20px] cursor-pointer"
                         />
-                        <span className="font-medium text-white text-[15px]">
+                        <span className="xs:hidden md:flex text-white lg:text-[13px] xl:text-[15px] lg:font-normal xl:font-medium">
                             Mua Gói
+                        </span>
+                        <span className="xs:flex md:hidden text-white lg:text-[13px] xl:text-[15px] lg:font-normal xl:font-medium">
+                            VIP
                         </span>
                     </button>
                     <button
-                        className="flex items-center justify-center ml-4 font-medium text-[16px] hover:text-orange-500"
+                        className="xs:hidden md:flex  items-center justify-center  md:ml-4 lg:ml-3 xl:ml-4 lg:font-normal xl:font-medium md:text-[13.9px] lg:text-[14px] xl:text-[16px] hover:text-orange-500"
                         onClick={hanldClose}
                     >
                         Đăng Nhập

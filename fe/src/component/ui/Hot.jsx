@@ -26,11 +26,11 @@ const Hot = () => {
     }, []);
     return (
         <>
-            <div className="relative z-20 -mt-[600px]">
-                <div className="text-white text-xl font-bold ml-[75px]">
+            <div className="relative z-20 md:-mt-[420px] lg:-mt-[720px] xl:-mt-[600px]">
+                <div className="text-white text-xl font-bold md:ml-[28px] lg:ml-[35px] xl:ml-[75px] md:pt-3 lg:mt-0">
                     <h2>Đề xuất hot</h2>
                 </div>
-                <div className="xl:w-[1365px] md:w-[980px] xl:ml-[60px] md:ml-[15px] xl:rounded-md md:rounded-md  mt-5 pb-7 pt-3">
+                <div className="md:w-[790px] lg:w-[880px] xl:w-[1365px] lg:ml-[10px] xl:ml-[60px]  xl:rounded-md md:rounded-md  mt-5 pb-7 md:pt-1 lg:pt-3">
                     {/* header BestSellingGoods */}
                     {/* body BestSellingGoods */}
                     <div className="box_2_container relative ">
@@ -50,7 +50,7 @@ const Hot = () => {
                                 <>
                                     {" "}
                                     <div
-                                        className="absolute md:-left-3 xl:-left-[20px] top-[42%] cursor-pointer  text-white"
+                                        className="absolute md:-left-1 xl:-left-[20px] top-[42%] cursor-pointer  text-white"
                                         onClick={() => handleScroll("left")}
                                     >
                                         <svg
@@ -73,13 +73,13 @@ const Hot = () => {
                         </div>
                         {/* content */}
                         <div
-                            className="w-[415px] md:w-[955px] xl:w-[1365px] ml-[15px] md:ml-[22px] xl:ml-[15px] mt-4 flex sub_box_2_container overflow-x-auto no-scrollbar md:overflow-hidden xl:overflow-hidden scroll-smooth"
+                            className="md:w-[750px] lg:w-[930px] xl:w-[1365px] ml-[15px] md:ml-[22px] xl:ml-[15px] mt-4 flex sub_box_2_container overflow-x-auto no-scrollbar md:overflow-hidden xl:overflow-hidden scroll-smooth"
                             ref={scrollRef}
                         >
                             {data.map((item) => (
                                 <div
                                     key={item.id}
-                                    className=" w-[237px]  h-[350px] mr-3"
+                                    className="md:w-[207px] lg:w-[227px] xl:w-[237px]  h-[350px] md:mr-[8px] lg:mr-2 xl:mr-3"
                                 >
                                     {/* img */}
                                     <Link to={`/${item.slug}`}>
@@ -87,7 +87,7 @@ const Hot = () => {
                                             <img
                                                 src={`${item.poster_url}`}
                                                 alt={item.name}
-                                                className="w-full h-[300px] object-cover rounded-ss-md rounded-se-md hover:transform hover:scale-105 transition-transform duration-300"
+                                                className="w-full md:h-[270px] lg:h-[300px] object-cover rounded-ss-md rounded-se-md hover:transform hover:scale-105 transition-transform duration-300"
                                             />
                                             <p className="text-white absolute bottom-0 left-4">
                                                 {item.episode_current}
@@ -120,7 +120,7 @@ const Hot = () => {
                             ) : (
                                 <>
                                     <div
-                                        className="absolute  -right-12 top-[42%] cursor-pointer text-white"
+                                        className="absolute md:-right-[10px] lg:-right-[110px] xl:-right-12 top-[42%] cursor-pointer text-white"
                                         onClick={() => handleScroll("right")}
                                     >
                                         <svg

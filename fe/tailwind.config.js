@@ -3,6 +3,9 @@ export default {
     content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
     theme: {
         extend: {
+            screens: {
+                xs: "360px", // breakpoint cho mọi thiết bị mobile phổ biến
+            },
             animation: {
                 fadeIn: "fadeIn 0.7s ease-in-out forwards",
             },

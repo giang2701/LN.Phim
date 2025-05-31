@@ -21,6 +21,7 @@
         text-overflow: ellipsis;
     } */
 }
+
 /* Ẩn thanh cuộn */
 .scrollbar-hide::-webkit-scrollbar {
     display: none;

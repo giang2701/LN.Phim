@@ -85,7 +85,7 @@ const BrowsePage = () => {
             <>
                 {/* Lớp phủ đen mờ */}
                 <div className="absolute inset-0 bg-black"></div>
-                <div className="breeding-rhombus-spinner detailPage flex ml-[48%] mt-[250px]">
+                <div className="breeding-rhombus-spinner detailPage flex xs:ml-[43%] md:ml-[48%] mt-[250px]">
                     <div className="rhombus child-1"></div>
                     <div className="rhombus child-2"></div>
                     <div className="rhombus child-3"></div>

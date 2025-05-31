@@ -7,6 +7,7 @@ const DetailPhim = () => {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     // console.log("data", data.movie?.actor);
+    const [lineClamp, setLineClamp] = useState(2);
 
     useEffect(() => {
         const getAll = async () => {
@@ -25,12 +26,27 @@ const DetailPhim = () => {
         getAll();
     }, [slug]);
 
+    useEffect(() => {
+        const handleResize = () => {
+            const width = window.innerWidth;
+            if (width >= 768 && width <= 1024) {
+                setLineClamp(3);
+            } else {
+                setLineClamp(2);
+            }
+        };
+
+        handleResize(); // gọi khi load
+        window.addEventListener("resize", handleResize);
+
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
     if (loading)
         return (
             <>
                 {/* Lớp phủ đen mờ */}
                 <div className="absolute inset-0 bg-black"></div>
-                <div className="breeding-rhombus-spinner detailPage flex ml-[48%] mt-[250px]">
+                <div className="breeding-rhombus-spinner detailPage flex xs:ml-[43%] md:ml-[48%] mt-[250px]">
                     <div className="rhombus child-1"></div>
                     <div className="rhombus child-2"></div>
                     <div className="rhombus child-3"></div>
@@ -45,7 +61,7 @@ const DetailPhim = () => {
         );
     return (
         <>
-            <div className="relative w-full h-screen pt-[70px] -mt-[75px]">
+            <div className="relative w-full xs:h-[1350px] md:h-screen pt-[70px] -mt-[75px]">
                 {/* Ảnh nền */}
                 <img
                     src={data?.movie?.thumb_url}
@@ -60,8 +76,8 @@ const DetailPhim = () => {
 
                 {/* Lớp phủ đen mờ */}
                 <div className="absolute inset-0 bg-black bg-opacity-60"></div>
-                <div className="relative z-10 text-white pt-6">
-                    <div className="flex items-center  ml-[70px] text-white text-[12px]">
+                <div className="relative z-10 text-white xs:pt-2 md:pt-10 lg:pt-6">
+                    <div className="flex items-center xs:ml-[10px]  md:ml-[70px] text-white xs:text-[10px] md:text-[12px]">
                         <Link to="/" className="flex items-center">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -125,13 +141,13 @@ const DetailPhim = () => {
                         </svg>
                         {data.movie?.name}
                     </div>
-                    <div className="xl:w-[1150px] xl:flex xl:mt-7 xl:items-center xl:ml-[170px] gap-3">
+                    <div className="md:gap-2 lg:gap-3 xs:mt-5 md:flex md:mt-7 md:items-center xs:ml-[35px] md:ml-[10px] lg:flex  lg:mt-7 lg:items-center lg:ml-[40px] xl:w-[1150px] xl:flex  xl:mt-7 xl:items-center  xl:ml-[170px] ">
                         {/* left */}
-                        <div className="xl:w-[35%] relative">
+                        <div className="xs:w-[90%] md:w-[40%] lg:w-[40%] xl:w-[35%] relative">
                             <img
                                 src={`${data.movie?.poster_url}`}
                                 alt={data.movie?.name}
-                                className="w-full h-[560px] object-cover rounded-md"
+                                className="w-full md:h-[530px] lg:h-[563px] object-cover rounded-md"
                             />
                             <Link to={`/play/${data.movie?.slug}`}>
                                 <button className="absolute bottom-1 right-2 flex w-[150px] p-3 border-2 border-white rounded-2xl bg-green-600 items-center justify-center font-semibold hover:bg-green-700 hover:border-green-500 transition">
@@ -154,7 +170,7 @@ const DetailPhim = () => {
                             </Link>
                         </div>
                         {/* right */}
-                        <div className="xl:w-[60%] bg-black bg-opacity-40 h-[563px] rounded-lg">
+                        <div className="xs:w-[90%] md:w-[58%] lg:w-[55%] xl:w-[60%] bg-black bg-opacity-40 md:h-[530px]  lg:h-[563px] rounded-lg">
                             <div className="py-3 pl-4">
                                 <h1 className="text-2xl font-bold w-[90%]">
                                     {data.movie?.name}&nbsp;
@@ -162,66 +178,66 @@ const DetailPhim = () => {
                                         ({data.movie?.origin_name})
                                     </span>{" "}
                                 </h1>
-                                <p className="xl:text-sm xl:mt-4">
+                                <p className="lg:text-sm xl:text-sm xs:mt-4 md:mt-4 lg:mt-2 xl:mt-4">
                                     Tình trạng:&nbsp;
-                                    <span className="xl:inline-block xl:bg-gray-400/50 xl:px-3 xl:py-[1px] xl:rounded-sm xl:ml-3">
+                                    <span className="xs:inline-block xs:bg-gray-400/50 xs:px-3 xs:py-[1px] xs:rounded-sm xs:ml-3 md:inline-block md:bg-gray-400/50 md:px-3 md:py-[1px] md:rounded-sm md:ml-3 lg:inline-block lg:bg-gray-400/50 lg:px-3 lg:py-[1px] lg:rounded-sm lg:ml-3 xl:inline-block xl:bg-gray-400/50 xl:px-3 xl:py-[1px] xl:rounded-sm xl:ml-3">
                                         {data.movie?.episode_current}
                                     </span>
                                 </p>
-                                <p className="xl:text-sm xl:mt-4">
+                                <p className="xs:text-sm xs:mt-3 md:text-sm md:mt-3 lg:text-sm lg:mt-3 xl:text-sm xl:mt-4">
                                     Số tập :&nbsp;
-                                    <span className="xl:inline-block xl:py-[1px] xl:rounded-lg xl:ml-1">
+                                    <span className="lg:inline-block lg:py-[1px] lg:rounded-lg lg:ml-1 xl:inline-block xl:py-[1px] xl:rounded-lg xl:ml-1">
                                         {data.movie?.episode_total}
                                     </span>
                                 </p>
-                                <p className="xl:text-sm xl:mt-4">
+                                <p className="xs:text-sm xs:mt-3 md:text-sm md:mt-3 lg:text-sm lg:mt-3 xl:text-sm xl:mt-4">
                                     Thời lượng:&nbsp;
-                                    <span className="xl:inline-block xl:py-[1px] xl:rounded-lg xl:ml-1">
+                                    <span className="lg:inline-block lg:py-[1px] lg:rounded-lg lg:ml-1 xl:inline-block xl:py-[1px] xl:rounded-lg xl:ml-1">
                                         {data.movie?.time}
                                     </span>
                                 </p>
-                                <p className="xl:text-sm xl:mt-4">
+                                <p className="xs:text-sm xs:mt-3 md:text-sm md:mt-3 lg:text-sm lg:mt-3 xl:text-sm xl:mt-4">
                                     Năm phát hành:&nbsp;
-                                    <span className="xl:inline-block xl:bg-green-400/50 xl:px-3 xl:py-[1px] xl:rounded-lg xl:ml-3">
+                                    <span className="xs:inline-block xs:bg-green-400/50 xs:px-3 xs:py-[1px] xs:rounded-xs xs:ml-3  lg:inline-block lg:bg-green-400/50 lg:px-3 lg:py-[1px] lg:rounded-lg lg:ml-3 xl:inline-block xl:bg-green-400/50 xl:px-3 xl:py-[1px] xl:rounded-lg xl:ml-3">
                                         {data.movie?.year}
                                     </span>
                                 </p>
-                                <p className="xl:text-sm xl:mt-4">
+                                <p className="xs:text-sm xs:mt-3 md:text-sm md:mt-3 lg:text-sm lg:mt-3 xl:text-sm xl:mt-4">
                                     Chất lượng:&nbsp;
                                     <span className="xl:inline-block xl:py-[1px] xl:rounded-lg xl:ml-1">
                                         {data.movie?.quality}
                                     </span>
                                 </p>
-                                <p className="xl:text-sm xl:mt-4">
+                                <p className="xs:text-sm xs:mt-3 md:text-sm md:mt-3 lg:text-sm lg:mt-3 xl:text-sm xl:mt-4">
                                     Ngôn ngữ:&nbsp;
                                     <span className="xl:inline-block xl:py-[1px] xl:rounded-lg xl:ml-1">
                                         {data.movie?.lang}
                                     </span>
                                 </p>
-                                <p className="xl:text-sm xl:mt-4">
+                                <p className="xs:text-sm xs:mt-3 md:text-sm md:mt-3 lg:text-sm lg:mt-3 xl:text-sm xl:mt-4">
                                     Đạo diễn:&nbsp;
                                     <span className="xl:inline-block xl:py-[1px] xl:rounded-lg xl:ml-1">
                                         {data.movie?.director}
                                     </span>
                                 </p>
-                                <div className="xl:text-sm xl:mt-4 xl:flex xl:items-center">
+                                <div className="xs:text-sm xs:mt-3 md:text-sm md:mt-3 lg:text-sm lg:mt-3 xl:text-sm xl:mt-4 xl:flex xl:items-center">
                                     <p>Diễn viên:&nbsp;</p>
                                     <p
-                                        className="xl:py-[1px] xl:rounded-lg xl:ml-1 w-[500px] overflow-hidden text-ellipsis whitespace-nowrap"
+                                        className="xl:py-[1px] xl:rounded-lg xl:ml-1 lg:w-[450px] xl:w-[500px] overflow-hidden text-ellipsis whitespace-nowrap"
                                         title={data.movie?.actor}
                                     >
                                         {data.movie?.actor}
                                         {data.movie?.actor}
                                     </p>
                                 </div>{" "}
-                                <p className="xl:text-sm xl:mt-4">
+                                <p className="xs:text-sm xs:mt-3 md:text-sm md:mt-3 lg:text-sm lg:mt-3 xl:text-sm xl:mt-4">
                                     Thể loại:&nbsp;
                                     <span className="xl:inline-block xl:py-[1px] xl:rounded-lg xl:ml-1">
                                         {data.movie?.category?.map(
                                             (item, index) => (
                                                 <span
                                                     key={index}
-                                                    className="xl:bg-gray-400/50 xl:px-3 xl:py-[1px] xl:rounded-lg xl:ml-1"
+                                                    className="xs:bg-gray-400/50 xs:px-3 xs:py-[1px] xs:rounded-xs xs:ml-1 md:bg-gray-400/50 md:px-3 md:py-[1px] md:rounded-md md:ml-1 lg:bg-gray-400/50 lg:px-3 lg:py-[1px] lg:rounded-lg lg:ml-1 xl:bg-gray-400/50 xl:px-3 xl:py-[1px] xl:rounded-lg xl:ml-1"
                                                 >
                                                     {item.name}
                                                     {index <
@@ -235,7 +251,7 @@ const DetailPhim = () => {
                                         )}
                                     </span>
                                 </p>
-                                <p className="xl:text-sm xl:mt-4">
+                                <p className="xs:text-sm xs:mt-3 md:text-sm md:mt-3 lg:text-sm lg:mt-3 xl:text-sm xl:mt-4">
                                     Quốc gia:&nbsp;
                                     <span className="xl:inline-block xl:py-[1px] xl:rounded-lg xl:ml-1">
                                         {data.movie?.country?.map(
@@ -255,7 +271,7 @@ const DetailPhim = () => {
                                         )}
                                     </span>
                                 </p>
-                                <div className="xl:text-sm xl:mt-4">
+                                <div className="xs:text-sm xs:mt-3 md:text-sm md:mt-3 lg:text-sm lg:mt-3 xl:text-sm xl:mt-4">
                                     <p className="text-xl font-bold">
                                         Nội Dung Phim :&nbsp;
                                     </p>
@@ -263,7 +279,7 @@ const DetailPhim = () => {
                                         className="xl:inline-block xl:py-[1px] xl:rounded-lg xl:mt-2"
                                         style={{
                                             display: "-webkit-box",
-                                            WebkitLineClamp: 2,
+                                            WebkitLineClamp: lineClamp,
                                             WebkitBoxOrient: "vertical",
                                             overflow: "hidden",
                                             textOverflow: "ellipsis",

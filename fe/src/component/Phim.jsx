@@ -67,7 +67,7 @@ const App = () => {
             <>
                 {/* Lớp phủ đen mờ */}
                 <div className="absolute inset-0 bg-black"></div>
-                <div className="breeding-rhombus-spinner detailPage flex ml-[48%] mt-[250px]">
+                <div className="breeding-rhombus-spinner detailPage flex xs:ml-[43%] md:ml-[48%] mt-[250px]">
                     <div className="rhombus child-1"></div>
                     <div className="rhombus child-2"></div>
                     <div className="rhombus child-3"></div>
@@ -81,7 +81,7 @@ const App = () => {
             </>
         );
     return (
-        <div className="bg-black min-h-screen pt-[70px] -mt-[75px] relative">
+        <div className="bg-black min-h-screen md:pt-[100px] lg:pt-[70px] -mt-[75px] relative">
             <img
                 src={data?.movie?.thumb_url}
                 alt="background"
@@ -95,7 +95,7 @@ const App = () => {
 
             {/* Lớp phủ đen mờ */}
             <div className="absolute inset-0 bg-black bg-opacity-60"></div>
-            <div className="flex items-center  ml-[90px] text-white text-[12px] mt-5 relative">
+            <div className="flex items-center md:ml-[40px]  xl:ml-[90px] text-white text-[12px] mt-5 relative">
                 <Link to="/" className="flex items-center">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -159,7 +159,9 @@ const App = () => {
                 </svg>
                 {data.movie?.name}
             </div>
-            <div className="flex items-center relative z-20">
+            {/* content PC */}
+            <div className="hidden xl:flex items-center relative z-20">
+                {/* box 1 */}
                 <div className="w-[340px] h-[500px] bg-[#202125] ml-[40px] mt-6 overflow-y-auto scrollbar-hide pl-4">
                     {groupedEpisodes &&
                         Object.entries(groupedEpisodes).map(
@@ -202,7 +204,7 @@ const App = () => {
                             }
                         )}
                 </div>
-
+                {/* box 2 */}
                 <div style={{ marginTop: "20px" }}>
                     <video
                         ref={videoRef}
@@ -210,6 +212,7 @@ const App = () => {
                         className="xl:w-[800px] xl:h-[500px] bg-[#000]"
                     />
                 </div>
+                {/* box 3 */}
                 <div className="w-[370px] text-white">
                     <div className="py-3 pl-4">
                         <h1 className="text-2xl font-bold w-[100%]">
@@ -254,18 +257,86 @@ const App = () => {
                                 Nội Dung Phim :&nbsp;
                             </p>
                             <span
-                                className="xl:inline-block xl:py-[1px] xl:rounded-lg xl:mt-2 scrollbar-thin"
+                                className="xl:inline-block xl:py-[1px] xl:rounded-lg xl:mt-2 overflow-y-auto scrollbar-hide text-justify"
                                 style={{
+                                    width: "330px",
                                     maxHeight: "150px",
                                     overflowY: "auto",
                                     lineHeight: "1.7",
-                                    scrollbarWidth: "thin", // Firefox
+                                    // scrollbarWidth: "thin", // Firefox
                                 }}
                             >
                                 {data.movie?.content}
                             </span>
                         </div>
                     </div>
+                </div>
+            </div>
+            {/* content */}
+            <div className="block xl:hidden items-center relative z-20 md:-mt-[40px] lg:-mt-[40px]">
+                {/* box 1 */}
+                <div className="mt-20">
+                    <video
+                        ref={videoRef}
+                        controls
+                        className="xs:w-[360px] md:w-[760px] xs:ml-[15px] md:ml-[30px] lg:w-[950px] lg:h-[500px] lg:ml-[35px]"
+                    />
+                </div>
+                {/* box 2 */}
+                <div className="xs:w-[370px] md:w-[770px] lg:w-[950px]  text-white text-justify md:ml-[15px]  lg:ml-[35px] ">
+                    <div className="py-3 pl-4">
+                        <div className="lg:text-sm lg:mt-4 xs:h-[140px] md:h-[200px] xs:overflow-y-auto scrollbar-hide">
+                            <p className="text-xl font-bold">
+                                Nội Dung Phim :&nbsp;
+                            </p>
+                            <span className="xs:text-xs md:text-xl lg:inline-block  lg:py-[1px] lg:rounded-lg lg:mt-2 ">
+                                {data.movie?.content}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                {/* box 3 */}
+                <div className="xs:w-[360px] md:w-[748px] lg:w-[940px] h-[300px] bg-[#202125] xs:ml-[10px] md:ml-[30px] lg:ml-[40px] mt-3 overflow-y-auto scrollbar-hide xs:pl-2 md:pl-4">
+                    {groupedEpisodes &&
+                        Object.entries(groupedEpisodes).map(
+                            ([name, items], index) => {
+                                // Sắp xếp giảm dần theo số trong item.name
+                                const sortedItems = [...items].sort((a, b) => {
+                                    const getNumber = (str) => {
+                                        const match = str.match(/\d+/);
+                                        return match
+                                            ? parseInt(match[0], 10)
+                                            : 0;
+                                    };
+                                    return (
+                                        getNumber(b.name) - getNumber(a.name)
+                                    );
+                                });
+
+                                return (
+                                    <div key={index}>
+                                        <h3 className="text-white font-semibold px-1 mt-4 pt-4">
+                                            {name}
+                                        </h3>
+                                        <div className="flex flex-wrap">
+                                            {sortedItems.map((item, idx) => (
+                                                <button
+                                                    key={idx}
+                                                    onClick={() =>
+                                                        setEpisodeLink(
+                                                            item.link_m3u8
+                                                        )
+                                                    }
+                                                    className="m-1 px-2 py-1 bg-[#bab8b8] rounded text-[15px] hover:bg-white"
+                                                >
+                                                    {item.name}
+                                                </button>
+                                            ))}
+                                        </div>
+                                    </div>
+                                );
+                            }
+                        )}
                 </div>
             </div>
         </div>
